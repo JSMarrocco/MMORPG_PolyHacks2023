@@ -29,10 +29,10 @@ def writeAlgebraEquation1(cst1, cst2, operation, xValue):
 
     return equation
 
-cst1_1 = random.randint(-20, 20)
-cst2_1 = random.randint(-20, 20)
+cst1_1 = random.randint(-10, 10)
+cst2_1 = random.randint(-10, 10)
 operation_1 = random.randint(1,2)
-xValue_1 = random.randint(-20, 20)
+xValue_1 = random.randint(-10, 10)
 equation_1 = ""
 userInput_1 = ""
 score = 0
@@ -68,9 +68,9 @@ def writeAlgebraEquation2(cst1, cst2, cst3):
 
 
 
-cst1_2 = random.randint(-20, 20)
-cst2_2 = random.randint(-20, 20)
-cst3_2 = random.randint(-20, 20)
+cst1_2 = random.randint(-10, 10)
+cst2_2 = random.randint(-10, 10)
+cst3_2 = random.randint(-10, 10)
 equation_2 = ""
 userInput_2 = ""
 
