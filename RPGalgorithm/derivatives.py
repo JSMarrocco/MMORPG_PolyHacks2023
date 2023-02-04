@@ -11,10 +11,144 @@ import random
 
 ## Creating probability for problem
 
+def outerfunctionfunc(difficultyrating):
+
+    rdfunctions = random.randrange(10)
+
+
+    if rdfunctions == 0:
+
+        exponentval = random.randrange(4)+2
+        if random.randrange(1):
+            exponentval*=-1
+        
+        if (random.randrange(99)/100) < 1/difficultyrating:
+
+            insidefunction = insidefunctionfunc()
+
+        else:
+
+            insidefunction = "x"
+
+        function1="("+insidefunction+")^"+str(exponentval)
+            
+
+        
+    elif rdfunctions == 1:
+        
+        if (random.randrange(99)/100) < 1/difficultyrating:
+
+            insidefunction = insidefunctionfunc()
+
+        else:
+
+            insidefunction = "x"
+
+        function1="sin("+insidefunction+")"
+
+    elif rdfunctions == 2:
+
+        if (random.randrange(99)/100) < 1/difficultyrating:
+
+            insidefunction = insidefunctionfunc()
+
+        else:
+
+            insidefunction = "x"
+
+        function1="cos("+insidefunction+")"
+
+
+    elif rdfunctions == 3:
+
+        if (random.randrange(99)/100) < 1/difficultyrating:
+
+            insidefunction = insidefunctionfunc()
+
+        else:
+
+            insidefunction = "x"
+
+        function1="tan("+insidefunction+")"
+
+
+    elif rdfunctions == 4:
+
+        if (random.randrange(99)/100) < 1/difficultyrating:
+
+            insidefunction = insidefunctionfunc()
+
+        else:
+
+            insidefunction = "x"
+
+        function1="ln("+insidefunction+")"
+
+    elif rdfunctions == 5:
+
+
+        if (random.randrange(99)/100) < 1/difficultyrating:
+
+            insidefunction = insidefunctionfunc()
+
+        else:
+
+            insidefunction = "x"
+
+        function1="e^("+insidefunction+")"
+
+
+    elif rdfunctions == 6:
+
+        baseval = random.randrange(8)+2
+        if (random.randrange(99)/100) < 1/difficultyrating:
+
+            insidefunction = insidefunctionfunc()
+
+        else:
+
+            insidefunction = "x"
+
+        function1=str(baseval)+"^("+insidefunction+")"
+
+    elif rdfunctions == 7:
+
+        baseval = random.randrange(9)+2
+        if (random.randrange(99)/100) < 1/difficultyrating:
+            insidefunction = insidefunctionfunc()
+
+        else:
+
+            insidefunction = "x"
+
+        function1="log"+str(baseval)+"("+insidefunction+")"
+    elif rdfunctions == 8:
+
+            cstval = random.randrange(7)+2
+            if random.randrange(1):
+                cstval*=-1
+                cststr = str(cstval)
+            else:
+                cstval = "+" + str(cstval)
+            
+
+            function1="(x"+cstval+")"
+    elif rdfunctions >= 9:
+
+        function1="(x)"
+
+
+    if (random.randrange(3))!=1:
+        constant = str(random.randrange(10)+2)
+        function1 = constant+"*"+function1
+
+    return function1
+
+
 def insidefunctionfunc():
     
 
-    varrdfunctions = random.randrange(8)
+    varrdfunctions = random.randrange(10)
 
     function1  = ""
 
@@ -57,6 +191,18 @@ def insidefunctionfunc():
         baseval = random.randrange(9)+2
 
         function1="log"+str(baseval)+"(x)"
+    elif varrdfunctions >= 8:
+
+        cstval = random.randrange(4)+2
+        if random.randrange(1):
+            cstval*=-1
+            cststr = str(cstval)
+        else:
+            cstval = "+" + str(cstval)
+        
+
+        function1="(x"+cstval+")"
+
 
     if (random.randrange(3))!=1:
         constant = str(random.randrange(10)+2)
@@ -66,261 +212,19 @@ def insidefunctionfunc():
 
     
 
-difficultyrating = 1
-chainmultprobability = 1/difficultyrating
+difficultyrating = random.randrange(4)+1
 
 operations = ["+","*","-","/"]
 generatedproblem = ""
 
-
-rdfunctions = random.randrange(10)
-
-firstoperation = operations[random.randrange(4)]
-
-function1 = ""
-function2 = ""
-
-if rdfunctions == 0:
-
-    exponentval = random.randrange(4)+2
-    if random.randrange(1):
-        exponentval*=-1
     
-    if (random.randrange(99)/100) < 1/difficultyrating:
+if (random.randrange(99)/100) < 1/(random.randrange(4)+1):
 
-        insidefunction = insidefunctionfunc()
-
-    else:
-
-        insidefunction = "x"
-
-    function1="("+insidefunction+")^"+str(exponentval)
-        
-
-    
-elif rdfunctions == 1:
-    
-    if (random.randrange(99)/100) < 1/difficultyrating:
-
-        insidefunction = insidefunctionfunc()
-
-    else:
-
-        insidefunction = "x"
-
-    function1="sin("+insidefunction+")"
-
-elif rdfunctions == 2:
-
-    if (random.randrange(99)/100) < 1/difficultyrating:
-
-        insidefunction = insidefunctionfunc()
-
-    else:
-
-        insidefunction = "x"
-
-    function1="cos("+insidefunction+")"
-
-
-elif rdfunctions == 3:
-
-    if (random.randrange(99)/100) < 1/difficultyrating:
-
-        insidefunction = insidefunctionfunc()
-
-    else:
-
-        insidefunction = "x"
-
-    function1="tan("+insidefunction+")"
-
-
-elif rdfunctions == 4:
-
-    if (random.randrange(99)/100) < 1/difficultyrating:
-
-        insidefunction = insidefunctionfunc()
-
-    else:
-
-        insidefunction = "x"
-
-    function1="ln("+insidefunction+")"
-
-elif rdfunctions == 5:
-
-
-    if (random.randrange(99)/100) < 1/difficultyrating:
-
-        insidefunction = insidefunctionfunc()
-
-    else:
-
-        insidefunction = "x"
-
-    function1="e^("+insidefunction+")"
-
-
-elif rdfunctions == 6:
-
-    baseval = random.randrange(8)+2
-    if (random.randrange(99)/100) < 1/difficultyrating:
-
-        insidefunction = insidefunctionfunc()
-
-    else:
-
-        insidefunction = "x"
-
-    function1=str(baseval)+"^("+insidefunction+")"
-
-elif rdfunctions == 7:
-
-    baseval = random.randrange(9)+2
-    if (random.randrange(99)/100) < 1/difficultyrating:
-        insidefunction = insidefunctionfunc()
-
-    else:
-
-        insidefunction = "x"
-
-    function1="log"+str(baseval)+"("+insidefunction+")"
-elif rdfunctions >= 8:
-
-    function1="(x)"
-
-
-if (random.randrange(3))!=1:
-    constant = str(random.randrange(10)+2)
-    function1 = constant+"*"+function1
-
-
-rdfunctions = random.randrange(10)
-
-
-if rdfunctions == 0:
-
-    exponentval = random.randrange(4)+2
-    if random.randrange(1):
-        exponentval*=-1
-    
-    if (random.randrange(99)/100) < 1/difficultyrating:
-
-        insidefunction = insidefunctionfunc()
-
-    else:
-
-        insidefunction = "x"
-
-    function2="("+insidefunction+")^"+str(exponentval)
-        
-
-    
-elif rdfunctions == 1:
-    
-    if (random.randrange(99)/100) < 1/difficultyrating:
-
-        insidefunction = insidefunctionfunc()
-
-    else:
-
-        insidefunction = "x"
-
-    function2="sin("+insidefunction+")"
-
-elif rdfunctions == 2:
-
-    if (random.randrange(99)/100) < 1/difficultyrating:
-
-        insidefunction = insidefunctionfunc()
-
-    else:
-
-        insidefunction = "x"
-
-    function2="cos("+insidefunction+")"
-
-
-elif rdfunctions == 3:
-
-    if (random.randrange(99)/100) < 1/difficultyrating:
-
-        insidefunction = insidefunctionfunc()
-
-    else:
-
-        insidefunction = "x"
-
-    function2="tan("+insidefunction+")"
-
-
-elif rdfunctions == 4:
-
-    if (random.randrange(99)/100) < 1/difficultyrating:
-
-        insidefunction = insidefunctionfunc()
-
-    else:
-
-        insidefunction = "x"
-
-    function2="ln("+insidefunction+")"
-
-elif rdfunctions == 5:
-
-
-    if (random.randrange(99)/100) < 1/difficultyrating:
-
-        insidefunction = insidefunctionfunc()
-
-    else:
-
-        insidefunction = "x"
-
-    function2="e^("+insidefunction+")"
-
-
-elif rdfunctions == 6:
-
-    baseval = random.randrange(8)+2
-    if (random.randrange(99)/100) < 1/difficultyrating:
-
-        insidefunction = insidefunctionfunc()
-
-    else:
-
-        insidefunction = "x"
-
-    function2=str(baseval)+"^("+insidefunction+")"
-
-elif rdfunctions == 7:
-
-    baseval = random.randrange(9)+2
-    if (random.randrange(99)/100) < 1/difficultyrating:
-        insidefunction = insidefunctionfunc()
-
-    else:
-
-        insidefunction = "x"
-
-    function2="log"+str(baseval)+"("+insidefunction+")"
-elif rdfunctions >= 8:
-
-    function2="x"
-
-if (random.randrange(3))!=1:
-    constant = str(random.randrange(10)+2)
-    function1 = constant+"*"+function2
-
-    
-if (random.randrange(99)/100) < 1/difficultyrating:
-
-    generatedproblem = "(" + function1 + ")" + operations[random.randrange(4)] + "(" + function2 + ")" 
+    generatedproblem = "(" + outerfunctionfunc(random.randrange(4)+1) + ")" + operations[random.randrange(4)] + "(" + outerfunctionfunc(random.randrange(4)+1) + ")" 
 
 else:
 
-    generatedproblem = function1
+    generatedproblem = outerfunctionfunc(difficultyrating) 
 
 print(generatedproblem)
 
