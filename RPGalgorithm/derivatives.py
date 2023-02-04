@@ -1,15 +1,5 @@
-import requests
-import random
-## Wolfram query notation
-#
-# + in wolfram query is "%2B"
-# - in wolfram query is "-"
-# * in wolfram query is "*"
-# / in wolfrma query is "%2F"
-#
-##
 
-## Creating probability for problem
+import random
 
 def outerfunctionfunc(difficultyrating):
 
@@ -198,7 +188,7 @@ def insidefunctionfunc():
             cstval*=-1
             cststr = str(cstval)
         else:
-            cstval = "+" + str(cstval)
+            cststr = "+" + str(cstval)
         
 
         function1="(x"+cstval+")"
