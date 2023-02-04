@@ -60,5 +60,8 @@ let equation_2 = "";
 let userInput_2 = "";
 
 console.log(writeAlgebraEquation2(cst1_2, cst2_2, cst3_2));
-  
+
+fetch(`https://newton.vercel.app/api/v2/derive/${generatedproblemforquery}`).then( response => {
+    console.log("Query reponse: ", response)
+});
   

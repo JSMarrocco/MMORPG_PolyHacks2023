@@ -1,6 +1,6 @@
 
 import random
-
+import requests
 def outerfunctionfunc(difficultyrating):
 
     rdfunctions = random.randrange(10)
@@ -119,10 +119,10 @@ def outerfunctionfunc(difficultyrating):
                 cstval*=-1
                 cststr = str(cstval)
             else:
-                cstval = "+" + str(cstval)
+                cststr = "+" + str(cstval)
             
 
-            function1="(x"+cstval+")"
+            function1="(x"+cststr+")"
     elif rdfunctions >= 9:
 
         function1="(x)"
@@ -191,7 +191,7 @@ def insidefunctionfunc():
             cststr = "+" + str(cstval)
         
 
-        function1="(x"+cstval+")"
+        function1="(x"+cststr+")"
 
 
     if (random.randrange(3))!=1:
@@ -218,4 +218,13 @@ else:
 
 print(generatedproblem)
 
+generatedproblemforquery = generatedproblem
 
+generatedproblemforquery = generatedproblemforquery.replace("+","%2B")
+generatedproblemforquery = generatedproblemforquery.replace("/","%2F")
+print(generatedproblemforquery)
+
+response = requests.get("https://newton.vercel.app/api/v2/derive/"+generatedproblemforquery)
+
+
+print(response.json())

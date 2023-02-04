@@ -195,3 +195,14 @@ generatedproblem = outerfunctionfunc(difficultyrating);
 }
 
 console.log(generatedproblem);
+
+let generatedproblemforquery: string = generatedproblem;
+
+generatedproblemforquery = generatedproblemforquery.replace("+", "%2B");
+generatedproblemforquery = generatedproblemforquery.replace("/", "%2F");
+console.log(generatedproblemforquery);
+
+fetch(`https://newton.vercel.app/api/v2/derive/${generatedproblemforquery}`).then( response => {
+    console.log("Query reponse: ", response)
+});
+
