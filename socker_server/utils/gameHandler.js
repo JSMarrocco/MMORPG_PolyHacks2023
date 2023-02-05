@@ -32,7 +32,7 @@ function gameHandler(io, socket) {
             io.to(roomId).emit("startGame")
 
             GameData[roomId].questions.push(getQuestion())
-            io.to(roomId).emit("emitQuestion", {qts: GameData[roomId].questions[GameData[roomId].questions.length - 1].latex})
+            io.to(roomId).emit("firstQuestion", {qts: GameData[roomId].questions[GameData[roomId].questions.length - 1].latex})
         }
         console.log(GameData[roomId]);
     }
@@ -47,14 +47,14 @@ function gameHandler(io, socket) {
                    if (player.id == socket.id) {
                         if (player.health < 5) {
                             player.health += 1
-                            io.to(socket.id).emit("updateHealth", {point: 1})
                         }
-                       socket.to(roomId).emit("updateOtherHealth", {point: -1})
-                    } else {
+                        io.to(socket.id).emit("updateHealth", {point: player.health})
+                       socket.to(roomId).emit("updateOtherHealth", {point: player.health})
+                    } 
+                    else {
                         player.health -= 1
-                       io.to(player.id).emit("updateHealth", {point: -1})
-                       socket.to(roomId).emit("updateOtherHealth", {point: 1})
-
+                        socket.to(roomId).emit("updateHealth", {point: player.health})
+                        io.to(socket.id).emit("updateOtherHealth", {point: player.health})
                     }
 
                     if (player.health <= 0) isGameOver = true
@@ -64,17 +64,15 @@ function gameHandler(io, socket) {
                 GameData[roomId].players.forEach(player => {
                     if (player.id == socket.id) {
                         player.health -= 2
-                        io.to(socket.id).emit("updateHealth", {point: -2})
-                    } else {
-                        io.to(player.id).emit("updateHealth", {point: 0})
-                        socket.to(roomId).emit("updateOtherHealth", {point: -2})
+                        io.to(socket.id).emit("updateHealth", {point: player.health})
+                        socket.to(roomId).emit("updateOtherHealth", {point:  player.health})
+                    } 
 
-                    }
                     if (player.health <= 0) isGameOver = true
                 });
            }
 
-           console.log(GameData[roomId]);
+        //    console.log(GameData[roomId]);
 
            if(isGameOver) {
                 io.to(roomId).emit("gameOver")

@@ -70,9 +70,9 @@ const GameComponent = ({question, onSubmitAnswer, health, otherHealth}) => {
                                         icon={<FavoriteIcon fontSize="inherit" />}
                                         emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
                                     />
-                                </Stack>
                                 {health}
-                                <Typography fontWeight={700}>Elo: 400</Typography>
+                                </Stack>
+                                {/* <Typography fontWeight={700}>Elo: 400</Typography> */}
                             </Box>
                         </Card>
 
@@ -105,7 +105,7 @@ const GameComponent = ({question, onSubmitAnswer, health, otherHealth}) => {
                                     {otherHealth}
 
                                 </Stack>
-                                <Typography fontWeight={200}>400</Typography>
+                                {/* <Typography fontWeight={200}>400</Typography> */}
                             </Box>
                         </Card>
                     </Grid>
