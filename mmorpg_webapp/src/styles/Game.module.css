@@ -20,7 +20,9 @@
 }
 
 .questionText {
+    font-size: 100px;
     text-align: center;
+    font-size: 2rem;
 }
 
 .statsContainer {

@@ -11,7 +11,10 @@ import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import { useRef, useState} from 'react';
+import { useRef, useState } from 'react';
+import { questionquery } from "../utils/derivatives"
+import { answerverify } from "../utils/answerchecking"
+
 var Latex = require('react-latex');
 
 const StyledRating = styled(Rating)({
@@ -27,18 +30,19 @@ const StyledRating = styled(Rating)({
 
 const Game = () => {
 
-    const [question, setQuestion] = useState(0);
+    const [question, setQuestion] = useState("0");
     const answerRef = useRef();
-    
+
     const handleKeypress = (e: { keyCode: number; }) => {
-        
-        if ( e.keyCode == 13) {
-            setQuestion(answerRef.current.value);
+
+        if (e.keyCode == 13) {
+            setQuestion(questionquery());
+            answerverify();
             answerRef.current.value = "";
-            
+
         }
     }
-    
+
     return (
         <Container>
             <h2>Header</h2>
@@ -95,14 +99,17 @@ const Game = () => {
                         </Card>
                     </Grid>
                     <Grid className={styles.questionContainer} xs={8}>
-                        <Latex>{`$${question}$`}</Latex>
+                        <div className={styles.questionText}>
+                            <Latex>{`$${question}$`}</Latex>
+
+                        </div>
 
                     </Grid>
                     <Grid className={styles.statsContainer} xs={4}>
                         <p>stats</p>
                     </Grid>
                     <Grid xs={8}>
-                        <TextField className={styles.answerField} id="outlined-basic" label="Answer" variant="outlined" 
+                        <TextField className={styles.answerField} id="outlined-basic" label="Answer" variant="outlined"
                             onKeyUp={handleKeypress}
                             inputRef={answerRef}
                         />
