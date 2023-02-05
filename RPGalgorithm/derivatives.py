@@ -220,11 +220,4 @@ print(generatedproblem)
 
 generatedproblemforquery = generatedproblem
 
-generatedproblemforquery = generatedproblemforquery.replace("+","%2B")
-generatedproblemforquery = generatedproblemforquery.replace("/","%2F")
-print(generatedproblemforquery)
 
-response = requests.get("https://newton.vercel.app/api/v2/derive/"+generatedproblemforquery)
-
-
-print(response.json())
