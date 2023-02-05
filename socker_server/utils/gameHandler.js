@@ -29,6 +29,7 @@ function gameHandler(io, socket) {
         GameData[roomId].players.push(player)
         if (GameData[roomId].players.length > 1) {
             GameData[roomId].started = true
+            io.to(roomId).emit("playersInfo", {players: GameData[roomId].players})
             io.to(roomId).emit("startGame")
 
             GameData[roomId].questions.push(getQuestion())

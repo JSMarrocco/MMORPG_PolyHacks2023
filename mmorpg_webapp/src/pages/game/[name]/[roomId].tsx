@@ -10,7 +10,7 @@ import FavoriteIcon from '@mui/icons-material/Favorite';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import { styled } from '@mui/material/styles';
 import Rating from '@mui/material/Rating';
-import eLeetMath from '../../..//public/eLeetMath.svg'
+import eLeetMath from '../../../../public/eLeetMath.svg'
 import Image from "next/image";
 
 var Latex = require('react-latex');
@@ -28,12 +28,17 @@ let socket
 
 const GameRoomView = () => {
     const router = useRouter()
-    const { roomId: queryRoomId } = router.query
+    const { name, roomId: queryRoomId } = router.query
 
     const [userCount, setUserCount] = useState(0);
     const [userId, setUserId] = useState();
     const [userHealth, setUserHealth] = useState(5);
     const [otherHealth, setOtherHealth] = useState(5);
+
+    const [userName, setUserName] = useState(name)
+    const [otherName, setOtherName] = useState(name)
+
+
     const [roomId, setRoomId] = useState(queryRoomId);
     const [ gameStarted, setGameStarted] = useState(false)
     const [currentQuestion, setCurrentQuestion] = useState("Waiting for question")
@@ -79,10 +84,18 @@ const GameRoomView = () => {
         socket.on("requestPlayerInfo", () => {
             const player = { 
                 id: socket.id,
-                name: "John Doe",
+                name: userName,
                 health: userHealth
             }
             socket.emit("playerInfo", {roomId, player })
+        })
+
+        socket.on("playersInfo", ({players}) => {
+            console.log(players)
+            players.forEach(player => {
+                if (player.id != socket.id)
+                    setOtherName(player.name)
+            });
         })
 
 
@@ -149,7 +162,7 @@ const GameRoomView = () => {
                             <Box sx={{ p: 2, display: 'flex' }}>
                                 <Avatar variant="rounded" src="avatar1.jpg" />
                                 <Stack spacing={2}>
-                                    <Typography fontWeight={700}>Michael Scott</Typography>
+                                    <Typography fontWeight={700}>{userName}</Typography>
                                     <StyledRating
                                         name="customized-color"
                                         // defaultValue={health}
@@ -181,7 +194,7 @@ const GameRoomView = () => {
                             <Box sx={{ p: 2, display: 'flex' }}>
                                 <Avatar variant="rounded" src="avatar1.jpg" />
                                 <Stack spacing={2}>
-                                    <Typography fontWeight={700}>Michael Scott</Typography>
+                                    <Typography fontWeight={700}>{otherName}</Typography>
                                     <StyledRating
                                         name="customized-color"
                                         // defaultValue={otherHealth}
@@ -207,8 +220,15 @@ const GameRoomView = () => {
 
                     </Grid>
                     <Grid xs={0.1}></Grid>
-                    <Grid className={styles.statsContainer} xs={3.9} >
-                        <p>stats</p>
+                    <Grid className={styles.statsContainer} direction="column" xs={3.9} >
+                        <Grid item xs={12}>
+                            <p>ChatRPG</p>
+
+                        </Grid>
+                        <Grid  item className={styles.chat} xs={12}>
+                            <TextField className={styles.answerField} id="outlined-basic" variant="outlined"
+                            />
+                        </Grid>
                     </Grid>
                     <Grid xs={12}><br></br></Grid>
 
@@ -217,12 +237,9 @@ const GameRoomView = () => {
                             onKeyUp={handleKeypress}
                             inputRef={answerRef}
                         />
+
                     </Grid>
                     <Grid xs={0.1}></Grid>
-                    <Grid className={styles.chat} xs={3.9}>
-                        <TextField className={styles.answerField} id="outlined-basic" variant="outlined"
-                        />
-                    </Grid>
                 </Grid>
             </Box>
         </Container>)

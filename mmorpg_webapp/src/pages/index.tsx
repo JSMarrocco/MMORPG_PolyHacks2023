@@ -15,9 +15,12 @@ export default function Home() {
     const router = useRouter()
     const gameLinkInputRef = useRef()
     const gameCreateInputRef = useRef()
+    const userNameInputRef = useRef()
 
     const onGetGameLink = async () => {
-        router.push(`/game/${gameCreateInputRef.current.value}`)
+        const userName = (userNameInputRef.current.value != "") ? userNameInputRef.current.value : "No Name"  
+        const roomId = (gameCreateInputRef.current.value != "") ? gameCreateInputRef.current.value :  uuidv4()
+        router.push(`/game/${userName}/${roomId}`)
     }
 
     const onJoinExistingGame = async () => {
@@ -37,10 +40,10 @@ export default function Home() {
             </Grid>
 
             <Box>
-                <Grid container spacing={1} justifyContent="center" alignItems="center">
+                <Grid container spacing={1} justifyContent="center" alignItems="top">
 
                     <Grid className={styles.createRoom} item xs={5}>
-                        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }} >
+                        <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1}} >
                             <Typography fontWeight={700}>Username:</Typography>
                             <TextField
                                 margin="normal"
@@ -51,15 +54,16 @@ export default function Home() {
                                 name="username"
                                 autoComplete="username"
                                 autoFocus
+                                inputRef={userNameInputRef}
                             />
-                            <Button
+                            {/* <Button
                                 fullWidth
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
                                 onClick={() => { onGetGameLink() }}
                             >
                                 Set Name
-                            </Button>
+                            </Button> */}
 
                         </Box>
 
@@ -80,7 +84,9 @@ export default function Home() {
                                 autoComplete="roomID"
                                 autoFocus
                             />
-                            <Button
+                           
+                        </Box>
+                        <Button
                                 fullWidth
                                 variant="contained"
                                 sx={{ mt: 3, mb: 2 }}
@@ -89,7 +95,6 @@ export default function Home() {
                                 Join Room
                             </Button>
 
-                        </Box>
                     </Grid>
 
 
@@ -125,9 +130,9 @@ export default function Home() {
                                     </Box> */}
 
 
-                                    <Grid className={styles.createRoom} item xs={8}>
+                                    {/* <Grid className={styles.createRoom} item xs={8}>
                                         <Typography fontWeight={700}>Active Rooms:</Typography>
-                                    </Grid>
+                                    </Grid> */}
 
                                 </Grid>
                             </Grid>
