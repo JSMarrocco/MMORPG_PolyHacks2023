@@ -6,7 +6,7 @@ export async function  answerverify(initialQuestion: string,playerAnswer: string
     
     generatedProblemForQuery = generatedProblemForQuery.replace("+", "%2B");
     generatedProblemForQuery = generatedProblemForQuery.replace("/", "%2F");
-    //console.log(generatedProblemForQuery);
+    console.log(generatedProblemForQuery);
     
     playerAnswer = playerAnswer.replace(/\+/, "%2B");
     playerAnswer = playerAnswer.replace(/\//, "%2F");

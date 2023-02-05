@@ -30,34 +30,30 @@ const StyledRating = styled(Rating)({
 
 
 
-const GameComponent = ({qts}) => {
+const GameComponent = () => {
 
-    const [question, setQuestion] = useState(qts);
+    const [question, setQuestion] = useState("0");
     const answerRef = useRef();
 
     const handleKeypress = async (e: { keyCode: number; }) => {
 
         if (e.keyCode == 13) {
-<<<<<<< HEAD
             let derivativeraw = questionquery();
             let derivativelatex = tolatex(derivativeraw);
             setQuestion(derivativelatex);
-            let answerout = await answerverify("","");
+            let answerout = await answerverify("1/x^2","-2/x^3");
             console.log(answerout);
 
-=======
-                
->>>>>>> 
             answerRef.current.value = "";
 
         }
     }
 
     return (
-        <Container>
+        <Container >
             <h2>Header</h2>
             <Box sx={{ flexGrow: 1 }}>
-                <Grid className={styles.main} container spacing={2}>
+                <Grid className={styles.main} container spacing={1}>
 
 
                     <Grid className={styles.score} xs={4}>
@@ -65,7 +61,7 @@ const GameComponent = ({qts}) => {
                         <Card>
                             <Box sx={{ p: 2, display: 'flex' }}>
                                 <Avatar variant="rounded" src="avatar1.jpg" />
-                                <Stack spacing={0}>
+                                <Stack spacing={2}>
                                     <Typography fontWeight={700}>Michael Scott</Typography>
                                     <StyledRating
                                         name="customized-color"
@@ -85,14 +81,16 @@ const GameComponent = ({qts}) => {
                     <Grid className={styles.timer} xs={4}>
                         <p>time</p>
                     </Grid>
+                    <Grid xs={0.1}>
+                    </Grid>
 
 
                     {/* Player 2 stats */}
-                    <Grid className={styles.score} xs={4}>
+                    <Grid className={styles.score} xs={3.9}>
                         <Card>
                             <Box sx={{ p: 2, display: 'flex' }}>
                                 <Avatar variant="rounded" src="avatar1.jpg" />
-                                <Stack spacing={0.5}>
+                                <Stack spacing={2}>
                                     <Typography fontWeight={700}>Michael Scott</Typography>
                                     <StyledRating
                                         name="customized-color"
@@ -108,17 +106,19 @@ const GameComponent = ({qts}) => {
                             </Box>
                         </Card>
                     </Grid>
-                    <Grid className={styles.questionContainer} xs={8}>
+                    <Grid xs={12}><br></br></Grid>
+                    <Grid className={styles.questionContainer} xs={8} >
                         <div className={styles.questionText}>
                             <Latex>{`$${question}$`}</Latex>
 
                         </div>
 
                     </Grid>
-                    <Grid className={styles.statsContainer} xs={4}>
+                    <Grid xs={0.1}></Grid>
+                    <Grid className={styles.statsContainer} xs={3.9} >
                         <p>stats</p>
                     </Grid>
-                    <Grid xs={8}>
+                    <Grid xs={7}>
                         <TextField className={styles.answerField} id="outlined-basic" label="Answer" variant="outlined"
                             onKeyUp={handleKeypress}
                             inputRef={answerRef}
