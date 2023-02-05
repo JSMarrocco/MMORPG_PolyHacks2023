@@ -113,14 +113,18 @@ const GameComponent = ({question}) => {
                     <Grid className={styles.statsContainer} xs={3.9} >
                         <p>stats</p>
                     </Grid>
-                    <Grid xs={7}>
+                    <Grid xs={12}><br></br></Grid>
+
+                    <Grid xs={8}>
                         <TextField className={styles.answerField} id="outlined-basic" label="Answer" variant="outlined"
                             onKeyUp={handleKeypress}
                             inputRef={answerRef}
                         />
                     </Grid>
-                    <Grid className={styles.chat} xs={4}>
-                        <p>yo</p>
+                    <Grid xs={0.1}></Grid>
+                    <Grid className={styles.chat} xs={3.9}>
+                            <TextField className={styles.answerField} id="outlined-basic"  variant="outlined"
+                        />
                     </Grid>
                 </Grid>
             </Box>
