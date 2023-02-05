@@ -1,5 +1,16 @@
 
+const { questionquery } = require('./rpg/derivatives')
+const { tolatex } = require('./rpg/latexconverting')
+
 let GameData = {}
+
+
+const getQuestion=() => {
+    raw = questionquery()
+    latex = tolatex(raw)
+
+    return {raw, latex}
+}
 
 function gameHandler(io, socket) {
     const initGame = ({roomId}) => {
@@ -19,7 +30,8 @@ function gameHandler(io, socket) {
             GameData[roomId].started = true
             io.to(roomId).emit("startGame")
 
-            GameData[roomId].questions.push({raw: "raw question", latex: "Latex questions"})
+
+            GameData[roomId].questions.push(getQuestion())
             io.to(roomId).emit("emitQuestion", {qts: GameData[roomId].questions[GameData[roomId].questions.length - 1].latex})
         }
         console.log(GameData[roomId]);
