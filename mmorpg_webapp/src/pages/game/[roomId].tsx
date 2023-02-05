@@ -18,6 +18,7 @@ const GameRoomView = () => {
     const [userId, setUserId] = useState();
     const [roomId, setRoomId] = useState(queryRoomId);
     const [ gameStarted, setGameStarted] = useState(false)
+    const [currentQuestion, setCurrentQuestion] = useState("Waiting for question")
 
     useEffect(() => {
         socketInitializer();
@@ -50,6 +51,10 @@ const GameRoomView = () => {
             setGameStarted(true)
         })
 
+        socket.on('emitQuestion', ({qts}) => {
+            setCurrentQuestion(qts)
+        })
+
         socket.emit("onJoinRoom", { roomId} )
 
     };
@@ -60,7 +65,7 @@ const GameRoomView = () => {
 
     return ( 
         (gameStarted) ?
-        <GameComponent/> :
+        <GameComponent qts={currentQuestion}/> :
         <Container sx={ { mt:20}}>
             <Box>
                 <Grid container spacing={4}  direction="column" justifyContent="center" alignItems="center">

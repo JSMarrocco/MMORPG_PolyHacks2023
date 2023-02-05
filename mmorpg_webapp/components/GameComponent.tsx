@@ -28,16 +28,16 @@ const StyledRating = styled(Rating)({
 
 
 
-const GameComponent = () => {
+const GameComponent = ({qts}) => {
 
-    const [question, setQuestion] = useState("0");
+    const [question, setQuestion] = useState(qts);
     const answerRef = useRef();
 
     const handleKeypress = (e: { keyCode: number; }) => {
 
         if (e.keyCode == 13) {
-            setQuestion(questionquery());
-            answerverify();
+            // setQuestion(questionquery());
+            // answerverify();
             answerRef.current.value = "";
 
         }
