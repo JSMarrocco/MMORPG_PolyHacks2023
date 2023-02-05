@@ -30,20 +30,24 @@ const StyledRating = styled(Rating)({
 
 
 
-const GameComponent = () => {
+const GameComponent = ({qts}) => {
 
-    const [question, setQuestion] = useState("0");
+    const [question, setQuestion] = useState(qts);
     const answerRef = useRef();
 
     const handleKeypress = async (e: { keyCode: number; }) => {
 
         if (e.keyCode == 13) {
+<<<<<<< HEAD
             let derivativeraw = questionquery();
             let derivativelatex = tolatex(derivativeraw);
             setQuestion(derivativelatex);
             let answerout = await answerverify("","");
             console.log(answerout);
 
+=======
+                
+>>>>>>> 
             answerRef.current.value = "";
 
         }

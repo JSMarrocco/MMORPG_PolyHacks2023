@@ -1,3 +1,4 @@
+
 let GameData = {}
 
 function gameHandler(io, socket) {
@@ -5,7 +6,8 @@ function gameHandler(io, socket) {
         console.log("Start Game for room: ", roomId);
         GameData[roomId] = {
             started: false,
-            players: [] 
+            players: [] ,
+            questions: []
         }
         io.to(roomId).emit("requestPlayerInfo", roomId)
     }
@@ -16,6 +18,9 @@ function gameHandler(io, socket) {
         if (GameData[roomId].players.length > 1) {
             GameData[roomId].started = true
             io.to(roomId).emit("startGame")
+
+            GameData[roomId].questions.push({raw: "raw question", latex: "Latex questions"})
+            io.to(roomId).emit("emitQuestion", {qts: GameData[roomId].questions[GameData[roomId].questions.length - 1].latex})
         }
         console.log(GameData[roomId]);
     }
