@@ -200,19 +200,7 @@ export function questionquery(): string {
     } 
 
     console.log(generatedproblem) 
-    let latexproblemgeneration = generatedproblem;
-    generatedproblem = generatedproblem.replace(/\(/g,"{(");
-    generatedproblem = generatedproblem.replace(/\)/g,")}");
     
-    if (generatedproblem.search("/") == -1 ) { 
-       console.log("Does not contain division" ); 
-    } else {
-        generatedproblem = "\\frac" + generatedproblem.replace("/","");
-
-    }
-
-    generatedproblem = "\\frac{d}{dx} " + generatedproblem
-    console.log(generatedproblem) 
     return generatedproblem;
 
 }
