@@ -35,3 +35,8 @@
 
     width: 100%;
 }
+
+.roomTitle {
+    font-size: 2rem;
+    font-weight: 700;
+}
