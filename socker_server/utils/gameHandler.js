@@ -12,6 +12,7 @@ function gameHandler(io, socket) {
     const receivingPlayerInfo = ({roomId, player}) => {
         console.log("Receiving info for room: ", roomId);
         GameData[roomId].players.push(player)
+        console.log(GameData[roomId]);
     }
 
     socket.on("initGame", initGame)
