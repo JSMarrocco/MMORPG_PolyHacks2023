@@ -14,6 +14,8 @@ import { styled } from '@mui/material/styles';
 import { useRef, useState } from 'react';
 import { questionquery } from "@/utils/derivatives"
 import { answerverify } from "@/utils/answerchecking"
+import { tolatex } from "@/utils/latexconverting"
+
 
 var Latex = require('react-latex');
 
@@ -28,16 +30,24 @@ const StyledRating = styled(Rating)({
 
 
 
-const GameComponent = () => {
+const GameComponent = ({qts}) => {
 
-    const [question, setQuestion] = useState("0");
+    const [question, setQuestion] = useState(qts);
     const answerRef = useRef();
 
-    const handleKeypress = (e: { keyCode: number; }) => {
+    const handleKeypress = async (e: { keyCode: number; }) => {
 
         if (e.keyCode == 13) {
-            setQuestion(questionquery());
-            answerverify();
+<<<<<<< HEAD
+            let derivativeraw = questionquery();
+            let derivativelatex = tolatex(derivativeraw);
+            setQuestion(derivativelatex);
+            let answerout = await answerverify("","");
+            console.log(answerout);
+
+=======
+                
+>>>>>>> 
             answerRef.current.value = "";
 
         }

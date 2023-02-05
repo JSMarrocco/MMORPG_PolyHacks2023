@@ -24,7 +24,7 @@ answer = answer.replace("/","%2F")
 
 
 
-
+print("https://api.wolframalpha.com/v2/query?input=(d%2Fdx("+generatedproblemforquery+"))-("+playeranswer+")+%3D+&format=plaintext&output=JSON&appid=KJLJKK-TWYU7552V2")
 verify = requests.get("https://api.wolframalpha.com/v2/query?input=(d%2Fdx("+generatedproblemforquery+"))-("+playeranswer+")+%3D+&format=plaintext&output=JSON&appid=KJLJKK-TWYU7552V2")
 print(verify)
 verifyresult = str((verify.json())['queryresult']['pods'][1]['subpods'][0]['plaintext'])
