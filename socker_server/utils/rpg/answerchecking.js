@@ -21,19 +21,24 @@ function  answerverify(initialQuestion,playerAnswer) {
         // console.log(response    )
         let verification = await response.json()
         // console.log("[DEBUG Verification]: ", verification)
-        let answer = verification.queryresult.pods[1].subpods[0].plaintext;
-        // console.log(answer)         
-        let outputval = 0
-        if (answer == 0){
-            //console.log("Correct")
-            outputval = 1
-            
-        } else {
-            //console.log("False")
-            outputval = 0
+        try {
+            let answer = verification.queryresult.pods[1].subpods[0].plaintext;
+            // console.log(answer)         
+            let outputval = 0
+            if (answer == 0){
+                //console.log("Correct")
+                outputval = 1
+                
+            } else {
+                //console.log("False")
+                outputval = 0
+            }
+        } catch(err) {
+
+            outputval = 0;
+
         }
-        
-         resolve(outputval);
+        resolve(outputval);
         
     });
 
