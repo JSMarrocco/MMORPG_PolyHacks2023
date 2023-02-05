@@ -11,7 +11,7 @@ import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { questionquery } from "@/utils/derivatives"
 import { answerverify } from "@/utils/answerchecking"
 
@@ -28,10 +28,11 @@ const StyledRating = styled(Rating)({
 
 
 
-const GameComponent = ({qts}) => {
+const GameComponent = ({question}) => {
 
-    const [question, setQuestion] = useState(qts);
+    // const [question, setQuestion] = useState(qts);
     const answerRef = useRef();
+
 
     const handleKeypress = (e: { keyCode: number; }) => {
 
