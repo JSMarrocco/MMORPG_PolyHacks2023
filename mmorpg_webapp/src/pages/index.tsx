@@ -7,8 +7,8 @@ import { Grid, Button, TextField } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
 import { useRouter } from 'next/router'
 import { useRef, useState } from 'react';
-
-
+import eLeetMath from "../../public/eLeetMath.svg";
+import Image from "next/image";
 
 export default function Home() {
 
@@ -31,7 +31,11 @@ export default function Home() {
 
     return (
         <Container sx={{}}>
-            <h1>Header</h1>
+            <Grid container  sx={{ mt: 5, mb: 5 }} spacing={1} justifyContent="center" alignItems="center">
+            <Image src={eLeetMath} height={200} width={200} alt="eleetmath"/>
+
+            </Grid>
+
             <Box>
                 <Grid container spacing={1} justifyContent="center" alignItems="center">
 
@@ -64,7 +68,7 @@ export default function Home() {
 
                     <Grid className={styles.createRoom} item xs={6}>
                         <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }} >
-                            <Typography fontWeight={700}>Create Room:</Typography>
+                            <Typography fontWeight={700}>Create or Join Room:</Typography>
                             <TextField
                                 margin="normal"
                                 required
@@ -82,7 +86,7 @@ export default function Home() {
                                 sx={{ mt: 3, mb: 2 }}
                                 onClick={() => { onGetGameLink() }}
                             >
-                                Create New Room
+                                Join Room
                             </Button>
 
                         </Box>
@@ -96,7 +100,7 @@ export default function Home() {
                         <Box>
                             <Grid container spacing={1} justifyContent="center" alignItems="center">
                                 <Grid className={styles.createRoom} item xs={4}>
-
+{/* 
                                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }} >
                                         <Typography fontWeight={700}>Join Room:</Typography>
                                         <TextField 
@@ -118,7 +122,7 @@ export default function Home() {
                                             Connect to Room
                                         </Button>
 
-                                    </Box>
+                                    </Box> */}
 
 
                                     <Grid className={styles.createRoom} item xs={8}>
