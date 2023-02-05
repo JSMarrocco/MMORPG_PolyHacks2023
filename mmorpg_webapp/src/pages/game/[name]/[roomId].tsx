@@ -12,8 +12,15 @@ import { styled } from '@mui/material/styles';
 import Rating from '@mui/material/Rating';
 import eLeetMath from '../../../../public/eLeetMath.svg'
 import Image from "next/image";
+import SendIcon from '@mui/icons-material/Send';
+
 
 var Latex = require('react-latex');
+
+type Message = {
+    author: string;
+    message: string;
+  };
 
 const StyledRating = styled(Rating)({
     '& .MuiRating-iconFilled': {
@@ -45,7 +52,10 @@ const GameRoomView = () => {
 
     const [openDialogue, setOpenDialogue] = useState(false);
 
+    const [messages, setMessages] = useState<Array<Message>>([]);
+
     const answerRef = useRef();
+    const chatRef = useRef();
 
     const handleClickOpenDialogue = () => {
         setOpenDialogue(true);
@@ -127,6 +137,13 @@ const GameRoomView = () => {
             handleClickOpenDialogue()
         })
 
+        
+        socket.on('addMessage', ({author, msg}) =>{
+            setMessages((currentMsg) => [
+                { author: author, message: msg },
+                ...currentMsg,
+            ]); 
+        })
 
 
         socket.emit("onJoinRoom", { roomId} )
@@ -148,6 +165,19 @@ const GameRoomView = () => {
         }
     }
 
+    const handleKeypressForChat = (e) => {
+        //it triggers by pressing the enter key
+        if (e.keyCode === 13) {
+          if (chatRef.current.value) {
+            setMessages((currentMsg) => [
+                { author: userName, message: chatRef.current.value },
+                ...currentMsg,
+            ]);
+            socket.emit("sendMessage", {author: userName, msg: chatRef.current.value, roomId})
+            chatRef.current.value = ""
+          }
+        }
+      };
 
     const GameContainer = (question, health, otherHealth) => {
         return( <Container >
@@ -220,15 +250,34 @@ const GameRoomView = () => {
 
                     </Grid>
                     <Grid xs={0.1}></Grid>
-                    <Grid className={styles.statsContainer} direction="column" xs={3.9} >
-                        <Grid item xs={12}>
-                            <p>ChatRPG</p>
-
+                    <Grid container className={styles.statsContainer} justifyContent={"flex-center"} xs={3.9} >
+                        <Grid textAlign={"center"} xs={12} fontWeight={700} >
+                            Chat
                         </Grid>
-                        <Grid  item className={styles.chat} xs={12}>
-                            <TextField className={styles.answerField} id="outlined-basic" variant="outlined"
+                        <Grid item xs={12} className={styles.chatBox} alignSelf={"flex-end"} sx={{height: 200,
+          overflow: "hidden",
+          overflowY: "scroll",}}>
+                                {messages.map((msg, i) => {
+                                return (
+                                    <div
+                                    className="w-full py-1 px-2 border-b border-gray-200"
+                                    key={i}
+                                    >
+                                    {msg.author}:{msg.message}   
+                                    </div>
+                                );
+                                })}
+                        </Grid>
+                        <Grid item xs={12} className={styles.chatForm}>   
+                            <TextField
+                                id="standard-text"
+                                label="message"
+                                className={styles.chatwrapText}
+                                //margin="normal"
+                                inputRef={chatRef}
+                                onKeyUp={handleKeypressForChat}
                             />
-                        </Grid>
+                        </Grid> 
                     </Grid>
                     <Grid xs={12}><br></br></Grid>
 
@@ -237,8 +286,8 @@ const GameRoomView = () => {
                             onKeyUp={handleKeypress}
                             inputRef={answerRef}
                         />
-
                     </Grid>
+                    
                     <Grid xs={0.1}></Grid>
                 </Grid>
             </Box>

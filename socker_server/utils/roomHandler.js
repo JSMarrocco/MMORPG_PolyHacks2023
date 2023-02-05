@@ -14,7 +14,12 @@ function roomHandler (io, socket) {
         }
     }
 
+    const sendMessage = ({author, msg, roomId}) => {
+        socket.to(roomId).emit("addMessage", {author, msg})
+    }
+
     socket.on("onJoinRoom", joinRoom)
+    socket.on("sendMessage", sendMessage)
 }
  
 module.exports = {roomHandler}
