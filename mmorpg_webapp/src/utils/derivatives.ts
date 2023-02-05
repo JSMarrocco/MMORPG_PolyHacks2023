@@ -1,4 +1,4 @@
-function questionquery(): string {
+export function questionquery(): string {
 
     function outerfunctionfunc(difficultyrating: number): string {
 
@@ -22,7 +22,7 @@ function questionquery(): string {
                 insidefunction = "x";
             }
 
-            function1 = "(" + insidefunction + ")^" + exponentval;
+            function1 = "(" + insidefunction + ")^(" + exponentval+")";
 
         } else if (rdfunctions === 1) {
 
@@ -144,7 +144,7 @@ function questionquery(): string {
                 exponentval *= -1;
             }
 
-            function1 = `(x)^${exponentval}`;
+            function1 = "(x)^(" + exponentval+")";
         } else if (varrdfunctions === 1) {
             function1 = 'sin(x)';
         } else if (varrdfunctions === 2) {
@@ -159,6 +159,7 @@ function questionquery(): string {
             let baseval = Math.floor(Math.random() * 8) + 2;
 
             function1 = `${baseval}^(x)`;
+
         } else if (varrdfunctions === 7) {
             let baseval = Math.floor(Math.random() * 9) + 2;
 
@@ -174,7 +175,9 @@ function questionquery(): string {
                 cststr = `+${cstval}`;
             }
 
-            function1 = `(x${cstval})`;
+            function1 = `(x+${cstval})`;
+            console.log("test");
+
         }
 
         if (Math.floor(Math.random() * 3) !== 1) {
@@ -192,10 +195,12 @@ function questionquery(): string {
 
     if (Math.random() < 1 / (Math.floor(Math.random() * 4) + 1)) {
         generatedproblem = "(" + outerfunctionfunc(Math.floor(Math.random() * 4) + 1) + ")" + operations[Math.floor(Math.random() * 4)] + "(" + outerfunctionfunc(Math.floor(Math.random() * 4) + 1) + ")";
-    } else {
+    } else { 
         generatedproblem = outerfunctionfunc(difficultyrating);
-    }
+    } 
 
+    console.log(generatedproblem) 
+    
     return generatedproblem;
 
 }
