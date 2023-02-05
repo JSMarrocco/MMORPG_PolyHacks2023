@@ -1,0 +1,35 @@
+.main {
+    text-align: center;
+
+}
+
+.score {
+    color: red;
+
+}
+
+.timer {
+    color: blue;
+}
+
+.questionContainer {
+    padding-top: 20vh;
+    height: 50vh;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.questionText {
+    text-align: center;
+}
+
+.statsContainer {
+    height: 50vh;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.answerField{
+
+    width: 100%;
+}
