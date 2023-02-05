@@ -41,8 +41,7 @@ const GameRoomView = () => {
 
         socket.on("requestPlayerInfo", () => {
             const player = { 
-                id: socket.id,
-                ackStart: false
+                id: socket.id
             }
             socket.emit("playerInfo", {roomId, player })
         })

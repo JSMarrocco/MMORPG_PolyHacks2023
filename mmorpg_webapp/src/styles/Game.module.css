@@ -1,4 +1,6 @@
 .main {
+    padding: 2%;
+
     text-align: center;
 
 }
@@ -13,6 +15,8 @@
 }
 
 .questionContainer {
+    padding: 5%;
+
     padding-top: 20vh;
     height: 50vh;
     border: 2px solid black;
@@ -20,19 +24,21 @@
 }
 
 .questionText {
+    padding: 5%;
     font-size: 100px;
     text-align: center;
     font-size: 2rem;
 }
 
 .statsContainer {
+    padding: 5%;
     height: 50vh;
     border: 2px solid black;
     border-radius: 5px;
 }
 
 .answerField{
-
+    padding: 5%;
     width: 100%;
 }
 

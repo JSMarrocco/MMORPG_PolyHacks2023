@@ -3,8 +3,6 @@ import * as React from 'react';
 import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Box from '@mui/material/Box';
-import Stack from '@mui/material/Stack';
-import Divider from '@mui/material/Divider';
 import { Grid, Button, TextField } from '@mui/material';
 import { v4 as uuidv4 } from 'uuid';
 import { useRouter } from 'next/router'
@@ -16,11 +14,10 @@ export default function Home() {
 
     const router = useRouter()
     const gameLinkInputRef = useRef()
+    const gameCreateInputRef = useRef()
 
     const onGetGameLink = async () => {
-        const newRoomId = uuidv4()
-
-        router.push(`/game/${newRoomId}`)
+        router.push(`/game/${gameCreateInputRef.current.value}`)
     }
 
     const onJoinExistingGame = async () => {
@@ -75,6 +72,7 @@ export default function Home() {
                                 id="roomID"
                                 label="Room ID"
                                 name="roomID"
+                                inputRef={gameCreateInputRef}
                                 autoComplete="roomID"
                                 autoFocus
                             />
@@ -100,7 +98,7 @@ export default function Home() {
                                 <Grid className={styles.createRoom} item xs={4}>
 
                                     <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }} >
-                                        <Typography fontWeight={700}>Create Room:</Typography>
+                                        <Typography fontWeight={700}>Join Room:</Typography>
                                         <TextField 
                                             fullWidth 
                                             margin="normal"
@@ -117,7 +115,7 @@ export default function Home() {
                                             sx={{ mt: 3, mb: 2 }}
                                             onClick={() => { onJoinExistingGame() }}
                                         >
-                                            Create New Room
+                                            Connect to Room
                                         </Button>
 
                                     </Box>

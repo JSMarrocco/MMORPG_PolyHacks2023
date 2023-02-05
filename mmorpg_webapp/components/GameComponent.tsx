@@ -14,6 +14,8 @@ import { styled } from '@mui/material/styles';
 import { useEffect, useRef, useState } from 'react';
 import { questionquery } from "@/utils/derivatives"
 import { answerverify } from "@/utils/answerchecking"
+import { tolatex } from "@/utils/latexconverting"
+
 
 var Latex = require('react-latex');
 
@@ -33,12 +35,10 @@ const GameComponent = ({question}) => {
     // const [question, setQuestion] = useState(qts);
     const answerRef = useRef();
 
-
-    const handleKeypress = (e: { keyCode: number; }) => {
+    const handleKeypress = async (e: { keyCode: number; }) => {
 
         if (e.keyCode == 13) {
-            // setQuestion(questionquery());
-            // answerverify();
+                
             answerRef.current.value = "";
 
         }
