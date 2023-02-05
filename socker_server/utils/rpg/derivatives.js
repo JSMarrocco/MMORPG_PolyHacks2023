@@ -176,7 +176,6 @@ function questionquery() {
             }
 
             function1 = `(x+${cstval})`;
-            console.log("test");
 
         }
 
@@ -191,7 +190,6 @@ function questionquery() {
     let difficultyrating = Math.floor(Math.random() * 4) + 1;
 
     let operations = ["+", "*", "-", "/"];
-    let generatedproblem = "";
 
     if (Math.random() < 1 / (Math.floor(Math.random() * 4) + 1)) {
         generatedproblem = "(" + outerfunctionfunc(Math.floor(Math.random() * 4) + 1) + ")" + operations[Math.floor(Math.random() * 4)] + "(" + outerfunctionfunc(Math.floor(Math.random() * 4) + 1) + ")";
@@ -199,7 +197,6 @@ function questionquery() {
         generatedproblem = outerfunctionfunc(difficultyrating);
     } 
 
-    console.log(generatedproblem) 
     
     return generatedproblem;
 

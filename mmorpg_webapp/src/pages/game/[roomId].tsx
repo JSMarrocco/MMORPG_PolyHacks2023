@@ -16,6 +16,8 @@ const GameRoomView = () => {
 
     const [userCount, setUserCount] = useState(0);
     const [userId, setUserId] = useState();
+    const [userHealth, setUserHealth] = useState(5);
+    const [otherHealth, setOtherHealth] = useState(5);
     const [roomId, setRoomId] = useState(queryRoomId);
     const [ gameStarted, setGameStarted] = useState(false)
     const [currentQuestion, setCurrentQuestion] = useState("Waiting for question")
@@ -23,6 +25,7 @@ const GameRoomView = () => {
     useEffect(() => {
         socketInitializer();
     }, []);
+    
 
 
     const socketInitializer = async () => {
@@ -41,7 +44,9 @@ const GameRoomView = () => {
 
         socket.on("requestPlayerInfo", () => {
             const player = { 
-                id: socket.id
+                id: socket.id,
+                name: "John Doe",
+                health: userHealth
             }
             socket.emit("playerInfo", {roomId, player })
         })
@@ -52,20 +57,40 @@ const GameRoomView = () => {
         })
 
         socket.on('emitQuestion', ({qts}) => {
-            console.log(qts)
             setCurrentQuestion(qts)
+        })
+
+        socket.on('updateHealth', ({point}) => {
+            console.log("UPDATE POINT: ", point)
+            setUserHealth(userHealth + point)
+            console.log(userHealth)
 
         })
+
+        socket.on('updateOtherHealth', ({point}) => {
+            setOtherHealth(otherHealth + point)
+        })
+
+        socket.on('gameOver', () =>{
+            const msg = (userHealth > otherHealth) ?  "You WIN"  : "You Loose"
+            alert(msg)
+        })
+
+
 
         socket.emit("onJoinRoom", { roomId} )
 
     };
 
+    const onSubmitAnswer = (answer) => {
+        console.answer
+        socket.emit("submitAnswer", { roomId, answer} )
+    }
 
 
     return (
         (gameStarted) ?
-        <GameComponent question={currentQuestion}/> :
+        <GameComponent question={currentQuestion} onSubmitAnswer={onSubmitAnswer} health={userHealth} otherHealth={otherHealth}/> :
         <Container sx={ { mt:20}}>
             <Box>
                 <Grid container spacing={4}  direction="column" justifyContent="center" alignItems="center">

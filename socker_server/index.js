@@ -1,9 +1,15 @@
 const express = require("express");
 const { createServer } = require("http");
 const { Server } = require("socket.io");
-// const { initializeRoutes } = require("./routes");
 const { roomHandler } = require("./utils/roomHandler")
 const { gameHandler } = require("./utils/gameHandler")
+
+// import express from "express"
+// import { createServer }  from "http"
+// import { Server } from "socket.io";
+
+// import { roomHandler } from "./utils/roomHandler"
+// import { gameHandler } from "./utils/gameHandler"
 
 let app = express();
 const port = 5000;

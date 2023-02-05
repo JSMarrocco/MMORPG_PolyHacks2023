@@ -23,14 +23,14 @@ const StyledRating = styled(Rating)({
     '& .MuiRating-iconFilled': {
         color: '#ff6d75',
     },
-    '& .MuiRating-iconHover': {
-        color: '#ff3d47',
-    },
+    // '& .MuiRating-iconHover': {
+    //     color: '#ff3d47',
+    // },
 });
 
 
 
-const GameComponent = ({question}) => {
+const GameComponent = ({question, onSubmitAnswer, health, otherHealth}) => {
 
     // const [question, setQuestion] = useState(qts);
     const answerRef = useRef();
@@ -38,7 +38,9 @@ const GameComponent = ({question}) => {
     const handleKeypress = async (e: { keyCode: number; }) => {
 
         if (e.keyCode == 13) {
-                
+
+            onSubmitAnswer(answerRef.current.value)
+            
             answerRef.current.value = "";
 
         }
@@ -60,14 +62,15 @@ const GameComponent = ({question}) => {
                                     <Typography fontWeight={700}>Michael Scott</Typography>
                                     <StyledRating
                                         name="customized-color"
-                                        defaultValue={5}
-                                        getLabelText={(value: number) => `${value} Heart${value !== 1 ? 's' : ''}`}
+                                        // defaultValue={health}
+                                        value={health}
+                                        // getLabelText={(value: number) => `${value} Heart${value !== 1 ? 's' : ''}`}
                                         precision={1}
                                         icon={<FavoriteIcon fontSize="inherit" />}
                                         emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
                                     />
-
                                 </Stack>
+                                {health}
                                 <Typography fontWeight={700}>Elo: 400</Typography>
                             </Box>
                         </Card>
@@ -89,12 +92,14 @@ const GameComponent = ({question}) => {
                                     <Typography fontWeight={700}>Michael Scott</Typography>
                                     <StyledRating
                                         name="customized-color"
-                                        defaultValue={2}
-                                        getLabelText={(value: number) => `${value} Heart${value !== 1 ? 's' : ''}`}
+                                        // defaultValue={otherHealth}
+                                        value={otherHealth}
+                                        // getLabelText={(value: number) => `${value} Heart${value !== 1 ? 's' : ''}`}
                                         precision={1}
                                         icon={<FavoriteIcon fontSize="inherit" />}
                                         emptyIcon={<FavoriteBorderIcon fontSize="inherit" />}
                                     />
+                                    {otherHealth}
 
                                 </Stack>
                                 <Typography fontWeight={200}>400</Typography>
