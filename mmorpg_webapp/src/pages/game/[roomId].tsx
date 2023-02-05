@@ -52,35 +52,24 @@ const GameRoomView = () => {
         })
 
         socket.on('emitQuestion', ({qts}) => {
+            console.log(qts)
             setCurrentQuestion(qts)
+
         })
 
         socket.emit("onJoinRoom", { roomId} )
 
     };
 
-    // const onJoinGame = (uid) => {
-    //     socket.emit("onJoinRoom", { roomId, uid} )
-    // }
 
-    return ( 
+
+    return (
         (gameStarted) ?
-        <GameComponent qts={currentQuestion}/> :
+        <GameComponent question={currentQuestion}/> :
         <Container sx={ { mt:20}}>
             <Box>
                 <Grid container spacing={4}  direction="column" justifyContent="center" alignItems="center">
-                    {/* <Grid item xs={3}>
-                        Room: {roomId}
-                    </Grid>
-                    <Grid item xs={3}>
-                        <Button variant="contained" onClick={() => {onJoinGame(userId)}}>Join Game</Button>
-                    </Grid>
-                    <Grid item xs={3}>
-                        Player count: {userCount + 1}
-                    </Grid>
-                    <Grid item xs={3}>
-                        User Id: {userId}
-                    </Grid> */}
+        
                     <Grid className={styles.roomTitle} item xs={3}>
                         Room : {roomId}
                     </Grid>
@@ -88,7 +77,7 @@ const GameRoomView = () => {
                         <CircularProgress />
                     </Grid>
                     <Grid item xs={3}>
-                        Waiting for anoter player...
+                        Waiting for another player...
                     </Grid>
                 </Grid>
             </Box>

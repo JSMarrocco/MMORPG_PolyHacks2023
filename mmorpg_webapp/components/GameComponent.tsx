@@ -11,7 +11,7 @@ import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { questionquery } from "@/utils/derivatives"
 import { answerverify } from "@/utils/answerchecking"
 import { tolatex } from "@/utils/latexconverting"
@@ -30,20 +30,15 @@ const StyledRating = styled(Rating)({
 
 
 
-const GameComponent = () => {
+const GameComponent = ({question}) => {
 
-    const [question, setQuestion] = useState("0");
+    // const [question, setQuestion] = useState(qts);
     const answerRef = useRef();
 
     const handleKeypress = async (e: { keyCode: number; }) => {
 
         if (e.keyCode == 13) {
-            let derivativeraw = questionquery();
-            let derivativelatex = tolatex(derivativeraw);
-            setQuestion(derivativelatex);
-            let answerout = await answerverify("1/x^2","-2/x^3");
-            console.log(answerout);
-
+                
             answerRef.current.value = "";
 
         }

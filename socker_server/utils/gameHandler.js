@@ -28,7 +28,6 @@ function gameHandler(io, socket) {
     socket.on("initGame", initGame)
     socket.on("playerInfo", receivingPlayerInfo)
 
-
 }
 
 module.exports = {gameHandler}
