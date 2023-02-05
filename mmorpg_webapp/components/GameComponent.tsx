@@ -15,7 +15,8 @@ import { useEffect, useRef, useState } from 'react';
 import { questionquery } from "@/utils/derivatives"
 import { answerverify } from "@/utils/answerchecking"
 import { tolatex } from "@/utils/latexconverting"
-
+import eLeetMath from "../public/eLeetMath.svg"
+import Image from "next/image";
 
 var Latex = require('react-latex');
 
@@ -48,13 +49,13 @@ const GameComponent = ({question, onSubmitAnswer, health, otherHealth}) => {
 
     return (
         <Container >
-            <h2>Header</h2>
+        
             <Box sx={{ flexGrow: 1 }}>
                 <Grid className={styles.main} container spacing={1}>
 
-
+                    <Grid xs={12}><br></br></Grid>
                     <Grid className={styles.score} xs={4}>
-                        {/* Player 1 stats */}
+
                         <Card>
                             <Box sx={{ p: 2, display: 'flex' }}>
                                 <Avatar variant="rounded" src="avatar1.jpg" />
@@ -76,9 +77,11 @@ const GameComponent = ({question, onSubmitAnswer, health, otherHealth}) => {
                         </Card>
 
                     </Grid>
-                    <Grid className={styles.timer} xs={4}>
-                        <p>time</p>
+                    <Grid container  xs = {4} sx={{ mt: 0, mb: 3 }} spacing={0} justifyContent="center" alignItems="center">
+                        <Image src={eLeetMath} height={100} width={100} alt="eleetmath"/>
+        
                     </Grid>
+                    
                     <Grid xs={0.1}>
                     </Grid>
 
@@ -118,14 +121,18 @@ const GameComponent = ({question, onSubmitAnswer, health, otherHealth}) => {
                     <Grid className={styles.statsContainer} xs={3.9} >
                         <p>stats</p>
                     </Grid>
-                    <Grid xs={7}>
+                    <Grid xs={12}><br></br></Grid>
+
+                    <Grid xs={8}>
                         <TextField className={styles.answerField} id="outlined-basic" label="Answer" variant="outlined"
                             onKeyUp={handleKeypress}
                             inputRef={answerRef}
                         />
                     </Grid>
-                    <Grid className={styles.chat} xs={4}>
-                        <p>yo</p>
+                    <Grid xs={0.1}></Grid>
+                    <Grid className={styles.chat} xs={3.9}>
+                        <TextField className={styles.answerField} id="outlined-basic" variant="outlined"
+                        />
                     </Grid>
                 </Grid>
             </Box>
