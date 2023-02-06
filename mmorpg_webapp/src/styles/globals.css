@@ -105,3 +105,16 @@ a {
     color-scheme: dark;
   }
 }
+
+span.mfrac {
+  position: relative;
+}
+
+span.mfrac::before {
+  position: absolute;
+  content: "";
+  height: 1px;
+  width: 100%;
+  top: 50%;
+background-color: black;
+}
