@@ -14,6 +14,10 @@ import eLeetMath from '../../../../public/eLeetMath.svg'
 import Image from "next/image";
 import SendIcon from '@mui/icons-material/Send';
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> main
 var Latex = require('react-latex');
 
 type Message = {
