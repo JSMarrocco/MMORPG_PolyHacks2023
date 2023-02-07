@@ -209,7 +209,7 @@ const GameRoomView = () => {
 
                     </Grid>
                     <Grid container  xs = {4} sx={{ mt: 0, mb: 3 }} spacing={0} justifyContent="center" alignItems="center">
-                        <Image src={eLeetMath} height={100} width={100} alt="eleetmath"/>
+                        <Image className = {styles.imagehover} src={eLeetMath} height={80} width={80} alt="eleetmath" onClick={handleCloseDialogue}/>
         
                     </Grid>
                     
@@ -251,9 +251,9 @@ const GameRoomView = () => {
                     <Grid xs={0.1}></Grid>
                     <Grid container className={styles.statsContainer} justifyContent={"flex-center"} xs={3.9} >
                         <Grid textAlign={"center"} xs={12} fontWeight={700} >
-                            Chat
+                            Chat:
                         </Grid>
-                        <Grid item xs={12} className={styles.chatBox} alignSelf={"flex-end"} sx={{height: 200,
+                        <Grid item xs={12} className={styles.chatBox} alignSelf={"start"} sx={{height: 320,
           overflow: "hidden",
           overflowY: "scroll",}}>
                                 {messages.map((msg, i) => {
@@ -262,21 +262,11 @@ const GameRoomView = () => {
                                     className="w-full py-1 px-2 border-b border-gray-200"
                                     key={i}
                                     >
-                                    {msg.author}:{msg.message}   
+                                    {msg.author}: {msg.message}   
                                     </div>
                                 );
                                 })}
                         </Grid>
-                        <Grid item xs={12} className={styles.chatForm}>   
-                            <TextField
-                                id="standard-text"
-                                label="message"
-                                className={styles.chatwrapText}
-                                //margin="normal"
-                                inputRef={chatRef}
-                                onKeyUp={handleKeypressForChat}
-                            />
-                        </Grid> 
                     </Grid>
                     <Grid xs={12}><br></br></Grid>
 
@@ -288,6 +278,13 @@ const GameRoomView = () => {
                     </Grid>
                     
                     <Grid xs={0.1}></Grid>
+                    <Grid xs={3.9}>
+                        <TextField className={styles.answerField} id="standard-text" label="Chat" variant="outlined"
+                            onKeyUp={handleKeypressForChat}
+                            inputRef={chatRef}
+                        />
+                    </Grid>
+                    
                 </Grid>
             </Box>
         </Container>)

@@ -53,8 +53,14 @@
 }
 
 .chatForm {
-    /* display: "flex"; */
-    /* justify-content: "center"; */
-    /* width: "95%"; */
+    display: "flex";
+    justify-content: "center";
+    width: 100%;
+    
 }
 
+.imagehover:hover {
+
+    height: 100px;
+    width: 100px;
+}
